@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -42,10 +43,24 @@ public class EtsyTests {
         driver.findElementById("com.etsy.android:id/button_signin").click();
         Thread.sleep(3000);
         driver.findElementByAccessibilityId("Show Navigation Drawer").click();
+        Thread.sleep(3000);
+        Thread.sleep(3000);
+        MobileElement searchInput = driver.findElementById("com.etsy.android:id/search_src_text");
+
+        String text = "wooden spoon";
+
+        Actions actions = new Actions(driver);
+
+        //for some reason search by whole string doesn't work
+        //so as work around, I've used a loop
+        for (int i = 0; i < text.length(); i++) {
+            actions.sendKeys(searchInput, text.substring(i, i + 1)).perform();
+        }
+
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.closeApp();
     }
 }
