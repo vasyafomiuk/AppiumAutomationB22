@@ -1,12 +1,14 @@
 package com.cybertek.automation.tests;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -48,14 +50,15 @@ public class CalculatorTests {
         // wd/hub - path for Appium server clients same as for Selenium Grid
         URL url = new URL("http://localhost:4723/wd/hub");
         AppiumDriver<MobileElement> driver = new AndroidDriver<>(url, desiredCapabilities);
-        driver.findElementById("com.android.calculator2:id/digit_7").click(); // 7
-        driver.findElementByAccessibilityId("plus").click(); // +
+
+        driver.findElement(By.id("com.android.calculator2:id/digit_7")).click(); // 7
+        driver.findElement(MobileBy.AccessibilityId("plus")).click(); // +
+
         driver.findElementById("com.android.calculator2:id/digit_5").click(); // 5
         driver.findElementByAccessibilityId("equals").click(); // =
         MobileElement result = driver.findElementById("com.android.calculator2:id/result"); // result = 12
 
         Assert.assertEquals("12", result.getText());
-
         Thread.sleep(3000);
         driver.closeApp();
     }
