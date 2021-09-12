@@ -7,10 +7,12 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -20,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 
 public class EtsyTests {
     AppiumDriver<MobileElement> driver;
@@ -51,7 +54,7 @@ public class EtsyTests {
 
         //wait up to 20 seconds until element shows up
         By searchBy = MobileBy.AccessibilityId("Show Navigation Drawer");
-        wait.until(ExpectedConditions.presenceOfElementLocated(searchBy));
+        WebElement search = wait.until(ExpectedConditions.presenceOfElementLocated(searchBy));
         driver.findElement(searchBy).click();
 
         Thread.sleep(3000);
@@ -64,13 +67,24 @@ public class EtsyTests {
         //for some reason search by whole string doesn't work
         //so as work around, I've used a loop
 
-        for (int i = 0; i < text.length(); i++) {
-            actions.sendKeys(searchInput, text.substring(i, i + 1)).perform();
-        }
+//        for (int i = 0; i < text.length(); i++) {
+//            actions.sendKeys(searchInput, text.substring(i, i + 1)).perform();
+//        }
+
+        actions.sendKeys(searchInput, text).perform();
+
+        Thread.sleep(3000);
 
         List<MobileElement> populatedResults = driver.findElementsById("com.etsy.android:id/query_text");
         populatedResults.get(0).click(); // click on 1st populated result
+        Thread.sleep(3000);
 
+        List<MobileElement> searchResults = driver.findElementsById("com.etsy.android:id/listing_title");
+
+        //print text of every search result
+        searchResults.forEach( e -> System.out.println(e.getText()+"\n"));
+        //verify that every search result contains wooden spoon
+        searchResults.forEach( e -> Assert.assertTrue(e.getText().toLowerCase(Locale.ROOT).contains(text)));
         Thread.sleep(3000);
     }
 
