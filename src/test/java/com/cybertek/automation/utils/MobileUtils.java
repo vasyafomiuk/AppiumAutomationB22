@@ -18,6 +18,11 @@ public class MobileUtils {
         wait.until(ExpectedConditions.elementToBeClickable(mobileElement)).click();
     }
 
+    public static void waitForElement(By by){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
     public void swipeScreen(Direction dir) {
         System.out.println("swipeScreen(): dir: '" + dir + "'"); // always log your actions
 
