@@ -47,8 +47,9 @@ public class Driver {
                     caps.setCapability("app", "bs://e0ce6dfd61f8f7d9fd9c4fb11c746b65fd1d79f1");
 
                     // Specify device and os_version for testing
-                    caps.setCapability("device", "Google Pixel 3");
-                    caps.setCapability("os_version", "9.0");
+                    caps.setCapability("device", "OnePlus 8");
+                    caps.setCapability("os_version", "10.0");
+                    caps.setCapability("realMobile", "true");
 
                     // Set other BrowserStack capabilities
                     caps.setCapability("project", "My test appium automation");

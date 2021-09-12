@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HomePage {
-    @AndroidFindBy(id = "com.etsy.android:id/search_src_text")
+    @AndroidFindBy(xpath = "//*[@resource-id='com.etsy.android:id/search_src_text']")
     private MobileElement searchInput;
 
     @AndroidFindBy(id = "com.etsy.android:id/query_text")
@@ -27,6 +27,8 @@ public class HomePage {
     private List<MobileElement> searchResultTitles;
 
     private By searchIconBy = MobileBy.AccessibilityId("Show Navigation Drawer");
+    private By searchInputBy = MobileBy.xpath("//*[@resource-id='com.etsy.android:id/search_src_text']");
+
 
     public HomePage() {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver()), this);
@@ -41,12 +43,12 @@ public class HomePage {
         return populatedResults;
     }
 
-    public List<String> getSearchResultTitleTexts(){
+    public List<String> getSearchResultTitleTexts() {
         MobileUtils.waitFor(3000);
         return searchResultTitles.stream().map(MobileElement::getText).collect(Collectors.toList());
     }
 
-    public void searchFor(String text){
+    public void searchFor(String text) {
         MobileUtils.waitFor(2000);
         Actions actions = new Actions(Driver.getDriver());
         //wait for search icon and click
@@ -54,8 +56,9 @@ public class HomePage {
         Driver.getDriver().findElement(searchIconBy).click();
 
         //enter text of the item to search
-        MobileUtils.waitFor(2000);
-        actions.sendKeys(searchInput, text).perform();
+        MobileUtils.waitFor(3000);
+        MobileUtils.waitForElement(searchInputBy);
+        actions.sendKeys(Driver.getDriver().findElement(searchInputBy), text).perform();
         MobileUtils.waitFor(2000);
 
         //click on first populated result

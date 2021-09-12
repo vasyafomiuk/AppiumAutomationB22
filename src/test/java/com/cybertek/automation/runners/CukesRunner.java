@@ -9,7 +9,10 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/cybertek/automation/step_definitions",
         dryRun = false,
-        tags = "@search_results"
+        tags = "@search_results",
+        plugin = {
+                "json:target/cucumber.json"
+        }
 )
 public class CukesRunner {
 }
