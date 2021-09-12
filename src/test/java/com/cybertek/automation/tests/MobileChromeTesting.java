@@ -1,9 +1,12 @@
 package com.cybertek.automation.tests;
 
+import com.cybertek.automation.utils.MobileUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,5 +28,17 @@ public class MobileChromeTesting {
 
         URL url = new URL("http://localhost:4723/wd/hub");
         WebDriver driver = new RemoteWebDriver(url, desiredCapabilities);
+
+        driver.get("http://qa1.vytrack.com");
+
+        MobileUtils.waitFor(3000);
+
+        driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
+        driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
+        MobileUtils.waitFor(3000);
+        driver.findElement(By.id("main-menu-toggle")).click();
+        MobileUtils.waitFor(3000);
+
+        driver.quit();
     }
 }
