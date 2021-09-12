@@ -1,5 +1,6 @@
 package com.cybertek.automation.pages;
 
+import com.cybertek.automation.utils.ConfigurationReader;
 import com.cybertek.automation.utils.Driver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -29,5 +30,10 @@ public class LoginPage {
     public LoginPage(){
         // in Appium, we need to use AppiumFieldDecorator to enable @FindBY annotations
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver()), this);
+    }
+
+    public void login(){
+        String email = ConfigurationReader.getProperty("user.email");
+        String password = ConfigurationReader.getProperty("user.password");
     }
 }

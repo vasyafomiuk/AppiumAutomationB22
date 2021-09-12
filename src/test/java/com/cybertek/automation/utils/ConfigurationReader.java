@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigurationReader {
-    private static Properties properties;
+    private static final Properties properties;
 
     static {
         try (InputStream inputStream = new FileInputStream("configuration.properties")) {
