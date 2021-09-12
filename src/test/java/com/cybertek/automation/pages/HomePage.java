@@ -54,6 +54,7 @@ public class HomePage {
         Driver.getDriver().findElement(searchIconBy).click();
 
         //enter text of the item to search
+        MobileUtils.waitFor(2000);
         actions.sendKeys(searchInput, text).perform();
         MobileUtils.waitFor(2000);
 
