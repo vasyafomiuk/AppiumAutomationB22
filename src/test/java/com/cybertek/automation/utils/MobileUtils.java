@@ -26,7 +26,6 @@ public class MobileUtils {
         //  - iOS: 200 ms
         // final value depends on your app and could be greater
         final int ANIMATION_TIME = 200; // ms
-
         final int PRESS_TIME = 200; // ms
 
         int edgeBorder = 10; // better avoid edges
@@ -140,10 +139,10 @@ public class MobileUtils {
         int counter = 0;
         do {
             swipeScreenSmall(direction);
-        } while (!isElementPreset(by) && counter++ < 20);
+        } while (!isElementPresent(by) && counter++ < 20);
     }
 
-    public static boolean isElementPreset(By by) {
+    public static boolean isElementPresent(By by) {
         return !(Driver.getDriver().findElements(by).isEmpty());
     }
 
