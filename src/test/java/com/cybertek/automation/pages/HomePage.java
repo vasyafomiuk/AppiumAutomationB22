@@ -8,6 +8,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,5 +44,21 @@ public class HomePage {
     public List<String> getSearchResultTitleTexts(){
         MobileUtils.waitFor(3000);
         return searchResultTitles.stream().map(MobileElement::getText).collect(Collectors.toList());
+    }
+
+    public void searchFor(String text){
+        MobileUtils.waitFor(2000);
+        Actions actions = new Actions(Driver.getDriver());
+        //wait for search icon and click
+        MobileUtils.waitForElement(searchIconBy);
+        Driver.getDriver().findElement(searchIconBy).click();
+
+        //enter text of the item to search
+        actions.sendKeys(searchInput, text).perform();
+        MobileUtils.waitFor(2000);
+
+        //click on first populated result
+        populatedResults.get(0).click();
+        MobileUtils.waitFor(2000);
     }
 }
