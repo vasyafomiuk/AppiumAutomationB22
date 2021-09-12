@@ -1,3 +1,4 @@
+@search_results
 Feature: As user, I want to be able to search for goods
 
   Scenario: 1. Search for wooden spoon and verify that every search result contains it
