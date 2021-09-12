@@ -58,7 +58,14 @@ public class HomePage {
         //enter text of the item to search
         MobileUtils.waitFor(3000);
         MobileUtils.waitForElement(searchInputBy);
-        actions.sendKeys(Driver.getDriver().findElement(searchInputBy), text).perform();
+        for (int index = 0; index < 10; index++) {
+            try {
+                actions.sendKeys(Driver.getDriver().findElement(searchInputBy), text).perform();
+                break;
+            } catch (Exception e) {
+                System.out.println("error! attempt: " + (index + 1));
+            }
+        }
         MobileUtils.waitFor(2000);
 
         //click on first populated result
