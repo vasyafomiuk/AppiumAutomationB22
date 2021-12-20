@@ -26,8 +26,8 @@ public class HomePage {
     @AndroidFindBy(id = "com.etsy.android:id/listing_title")
     private List<MobileElement> searchResultTitles;
 
-    private By searchIconBy = MobileBy.AccessibilityId("Show Navigation Drawer");
-    private By searchInputBy = MobileBy.xpath("//*[@resource-id='com.etsy.android:id/search_src_text']");
+    private final By searchIconBy = MobileBy.AccessibilityId("Show Navigation Drawer");
+    private final By searchInputBy = MobileBy.id("com.etsy.android:id/search_src_text");
 
 
     public HomePage() {

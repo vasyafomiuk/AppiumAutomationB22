@@ -22,9 +22,10 @@ public class MobileChromeTesting {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.0");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
         desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+
 
         URL url = new URL("http://localhost:4723/wd/hub");
         WebDriver driver = new RemoteWebDriver(url, desiredCapabilities);

@@ -39,10 +39,9 @@ public class CalculatorTests {
          */
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.0");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
-        desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.calculator2");
-        desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.android.calculator2.Calculator");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
         //for non-default app we should use "app" property along with a value of application path, instead of appPackage and appActivity
         //create url of appium server:
         // localhost - server is running on the same computer
@@ -51,12 +50,12 @@ public class CalculatorTests {
         URL url = new URL("http://localhost:4723/wd/hub");
         AppiumDriver<MobileElement> driver = new AndroidDriver<>(url, desiredCapabilities);
 
-        driver.findElement(By.id("com.android.calculator2:id/digit_7")).click(); // 7
+        driver.findElement(By.id("com.google.android.calculator:id/digit_7")).click(); // 7
         driver.findElement(MobileBy.AccessibilityId("plus")).click(); // +
 
-        driver.findElementById("com.android.calculator2:id/digit_5").click(); // 5
+        driver.findElementById("com.google.android.calculator:id/digit_5").click(); // 5
         driver.findElementByAccessibilityId("equals").click(); // =
-        MobileElement result = driver.findElementById("com.android.calculator2:id/result"); // result = 12
+        MobileElement result = driver.findElementById("com.google.android.calculator:id/result_final"); // result = 12
 
         Assert.assertEquals("12", result.getText());
         Thread.sleep(3000);

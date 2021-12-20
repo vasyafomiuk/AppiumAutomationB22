@@ -32,8 +32,8 @@ public class EtsyTests {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.0");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
         desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk");
         URL url = new URL("http://localhost:4723/wd/hub");
         driver = new AndroidDriver<>(url, desiredCapabilities);
@@ -80,6 +80,8 @@ public class EtsyTests {
         Thread.sleep(3000);
 
         List<MobileElement> searchResults = driver.findElementsById("com.etsy.android:id/listing_title");
+
+
 
         //print text of every search result
         searchResults.forEach( e -> System.out.println(e.getText()+"\n"));

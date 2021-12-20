@@ -26,8 +26,8 @@ public class Driver {
                     DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.0");
-                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_2");
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
                     desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk");
                     try {
                         url = new URL("http://localhost:4723/wd/hub");
