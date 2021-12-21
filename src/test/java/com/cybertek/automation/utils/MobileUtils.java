@@ -116,7 +116,7 @@ public class MobileUtils {
                 pointOptionEnd = PointOption.point((dims.width / 2) + (dims.width / 2) / mult, dims.height / 2);
                 break;
             default:
-                throw new IllegalArgumentException("swipeScreenSmall(): dir: '" + dir.toString() + "' NOT supported");
+                throw new IllegalArgumentException("swipeScreenSmall(): dir: '" + dir + "' NOT supported");
         }
 
         // execute swipe using TouchAction
